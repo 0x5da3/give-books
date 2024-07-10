@@ -1,0 +1,114 @@
+.card{
+    width: 288px;
+    height: auto;
+  }
+  .card__imgframe{
+    width: 100%;
+    height: auto;
+    padding-top: 56.25%;
+    background: url(https://placehold.jp/640x360.png) no-repeat center;
+    background-size: cover;
+    box-sizing: border-box;
+  }
+  .card__textbox{
+    width: 100%;
+    height: auto;
+    padding: 20px 18px;
+    background: #ffffff;
+    box-sizing: border-box;
+  }
+
+  .card__textbox > * + *{
+    margin-top: 10px;
+  }
+  .card__titletext{
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 125%;
+  }
+  .card__overviewtext{
+    font-size: 6px;
+    line-height: 150%;
+  }
+
+  .card-skin{
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+  }
+
+  .container {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+/*https://csshtml.work/selecterw/*/
+
+  & input[type="checkbox"].password_checkbox {
+      border-radius: 0;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+    }
+  
+    & input[type="checkbox"].password_checkbox {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #ffffff;
+      vertical-align: -5px;
+    }
+    
+    & input[type="checkbox"].password_checkbox:checked:before {
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      transform: rotate(45deg);
+      width: 4px;
+      height: 8px;
+      border-right: 2px solid #00ff00;
+      border-bottom: 2px solid #00ff00;
+      content: '';
+    }
+  
+
+
+/* カルーセルの外枠 */
+.carousel {
+  width: 480px;
+  height: 260px;
+  display: flex;    /* 子要素を横に並べる */
+  margin: 100 auto;   /* 水平方向中央寄せ */
+}
+/* カルーセル内の画像 */
+.carousel img {
+  margin: 100;
+  padding: 100;
+  display: block; /* imgタグの改行のすき間を消すため */
+}
+
+/* スクロールアニメーションのキーフレーム */
+@keyframes scroll {
+  /* 初期位置は1個目の画像が左端 */
+  0% { margin-left: 0; }      
+  /* 1個分左の位置に進めて2個目の画像を左端にする */
+  20% { margin-left: -100%; }
+  /* 少しの間上と同じ位置 */  
+  25% { margin-left: -100%; }
+  /* 2個分左の位置に進めて3個目の画像を左端にする */
+  45% { margin-left: -200%; }
+  /* 少しの間上と同じ位置 */  
+  50% { margin-left: -200%; }
+  /* 以降は上と同様に繰り返し */
+  70% { margin-left: -300%; }
+  75% { margin-left: -300%; }
+  95% { margin-left: -400%; }
+  100% { margin-left: -400%; }
+}
+/* カルーセルの子要素にスクロールアニメーションを設定 */
+.carousel > :first-child {
+  animation-name: scroll;    /* キーフレーム名 */
+  animation-duration: 10s;  /* 再生時間全体は20秒 */
+  animation-delay: 5s;      /* 読込直後から遅延無しで開始 */
+  animation-iteration-count: infinite;  /* 無限に繰り返す */
+}

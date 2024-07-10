@@ -1,0 +1,22 @@
+{
+    "records": [
+        {
+            "og_title": "徹底攻略 AWS認定 ソリューションアーキテクト − アソシエイト教科書 第3版［SAA-C03］対応 - インプレスブックス",
+            "og_desc": "本書一冊で合格を目指せる",
+            "og_url": "https://book.impress.co.jp/books/1122101088",
+            "og_image": "https://img.ips.co.jp/ij/22/1122101088/1122101088-520x.jpg"
+        },
+        {
+            "og_title": "プログラミングRust 第2版",
+            "og_desc": "次世代ブラウザ開発用にMozillaによって開発されたRustは、C/C++並みのパフォーマンスと低レベルの制御能力に加え、メモリとスレッドの安全性を担保し、さらに並行性にも優れるといった特徴を持つ、優秀な言語です。本書はMozillaで実際にRustを使ってFirefoxを開発している著者らによる、言語の概要と用途について解説する書籍で、Rustのほとんどの機能を詳細にカバーします。Rustのメジャーバージョンアップにより非同期処理が可能となったことに対応し、第2版では新たに非同期処理の章を設け、この機能を詳細に解説しています。Rust 2021対応。",
+            "og_url": "https://www.oreilly.co.jp/books/9784873119786/",
+            "og_image": "https://www.oreilly.co.jp/books/images/picture_large978-4-87311-978-6.jpeg"
+        },
+        {
+            "og_title": "サイバーセキュリティの教科書|マイナビブックス",
+            "og_desc": "セキュリティの常識をアップデート！",
+            "og_url": "https://book.mynavi.jp/ec_products_detail/id=141365",
+            "og_image": "https://book.mynavi.jp//files/topics/141365_ext_06_0.jpg"
+        }
+    ]
+}
