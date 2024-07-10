@@ -14,7 +14,7 @@ out_dir = "docs"
 asset_dir = "assets"
 
 [web.app]
-base_path = "give_books"
+base_path = "give-books"
 
 # HTML title tag content
 title = "give-books"
