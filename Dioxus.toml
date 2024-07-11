@@ -8,13 +8,14 @@ name = "give-books"
 default_platform = "web"
 
 # `build` & `serve` dist path
-out_dir = "docs"
+# out_dir = "docs"
+out_dir = "dist"
 
 # resource (assets) file folder
 asset_dir = "assets"
 
 [web.app]
-base_path = "give-books"
+# base_path = "give-books"
 
 # HTML title tag content
 title = "give-books"

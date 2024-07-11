@@ -33,7 +33,7 @@ fn Container(v: Signal<Vec<OGP>>, bids: Signal<HashMap<String, (usize, bool)>>) 
         div { class: "container",
             for o in v.read().iter() {
                 div { class: "card card-skin",
-                    link { rel: "stylesheet", href: "main.css" }
+                    link { rel: "stylesheet", href: "{CSS_PATH}" }
                     div { class: "card_imgframe",
                         img { src: "{o.og_image}", width: 200, height: 250 }
                     }

@@ -7,6 +7,7 @@ pub const OG_DESC: &str = "og:description";
 pub const OG_URL: &str = "og:url";
 pub const OG_IMAGE: &str = "og:image";
 pub const ROOT_PATH: &str = "/";
+pub const CSS_PATH: &str = "./main.css";
 pub const MIN_PASS_LENGTH: usize = 8;
 
 pub const JSON_OGP: &str = r#"{
