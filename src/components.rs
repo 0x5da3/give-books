@@ -76,14 +76,15 @@ fn ContainerFromDB(mut bids: Signal<HashMap<String, (usize, bool)>>) -> Element 
 
         let _ = db
             .signin(Root {
-                username: "root",
-                password: "root",
+                username: DB_USERNAME,
+                password: DB_PASSWORD,
             })
             .await;
 
         let _ = db.use_ns("ns").use_db("testdb").await;
 
-        let v: Vec<OGP> = db.select("ogp").await.unwrap();
+        let v: Vec<OGP> = db.select("ogp").await.unwrap_or_default();
+        let v: Vec<OGP> = v.iter().map(sanitize_ogp).collect();
         let signal_v = use_signal(|| v);
         signal_v
     });
@@ -182,9 +183,16 @@ fn File(vogp: Signal<VOgp>) -> Element {
                         for file_name in files {
                             if let Some(file) = file_engine.read_file_to_string(&file_name).await
                             {
-                                let deserialized: VOgp = serde_json::from_str(&file).unwrap();
-                                tracing::info!("{:?}", deserialized);
-                                vogp.set(deserialized)
+                                match serde_json::from_str::<VOgp>(&file) {
+                                    Ok(deserialized) => {
+                                        let deserialized = sanitize_vogp(deserialized);
+                                        tracing::info!("{:?}", deserialized);
+                                        vogp.set(deserialized)
+                                    }
+                                    Err(err) => {
+                                        tracing::error!("invalid json file: {err}");
+                                    }
+                                }
                             }
                             filenames.write().push(file_name);
                         }
@@ -226,7 +234,8 @@ fn MailBox() -> Element {
         div {
             input {
                 r#type: "email",
-                pattern: ".+@*",
+                pattern: "[^@\\s]+@[^@\\s]+\\.[^@\\s]+",
+                required: true,
                 oninput: move |evt| { tracing::info!("ng {evt:?}") }
             }
         }

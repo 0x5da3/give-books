@@ -9,6 +9,20 @@ pub const OG_IMAGE: &str = "og:image";
 pub const ROOT_PATH: &str = "/";
 pub const MIN_PASS_LENGTH: usize = 8;
 
+// SECURITY: A browser/WASM frontend must never hold privileged DB
+// credentials — anything compiled into the client bundle is fully visible to
+// every user. These compile-time fallbacks exist only so that secrets are not
+// committed to version control; production must route DB access through a
+// backend that keeps credentials server-side.
+pub const DB_USERNAME: &str = match option_env!("SURREALDB_USER") {
+    Some(v) => v,
+    None => "root",
+};
+pub const DB_PASSWORD: &str = match option_env!("SURREALDB_PASS") {
+    Some(v) => v,
+    None => "root",
+};
+
 pub const JSON_OGP: &str = r#"{
     "records": [
         {
