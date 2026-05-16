@@ -7,7 +7,6 @@ pub mod utils;
 
 use crate::components::*;
 use dioxus::prelude::*;
-use surrealdb::{engine::remote::ws::Ws, opt::auth::Root, Surreal};
 use tracing::Level;
 
 fn App() -> Element {

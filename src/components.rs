@@ -1,4 +1,3 @@
-use super::*;
 use crate::consts::*;
 use crate::structs::*;
 use crate::utils::*;
@@ -69,57 +68,6 @@ fn Container(v: Signal<Vec<OGP>>, bids: Signal<HashMap<String, (usize, bool)>>) 
     )
 }
 
-#[component]
-fn ContainerFromDB(mut bids: Signal<HashMap<String, (usize, bool)>>) -> Element {
-    let future = use_resource(|| async move {
-        let db = Surreal::new::<Ws>("localhost:8000").await.unwrap();
-
-        let _ = db
-            .signin(Root {
-                username: DB_USERNAME,
-                password: DB_PASSWORD,
-            })
-            .await;
-
-        let _ = db.use_ns("ns").use_db("testdb").await;
-
-        let v: Vec<OGP> = db.select("ogp").await.unwrap_or_default();
-        let v: Vec<OGP> = v.iter().map(sanitize_ogp).collect();
-        let signal_v = use_signal(|| v);
-        signal_v
-    });
-
-    match &*future.read_unchecked() {
-        Some(response) => {
-            rsx! {
-                form {
-                    id: "t",
-                    onsubmit: move |evt: Event<FormData>| {
-                        let vs = evt.values();
-                        if !vs.is_empty() {
-                            tracing::info!("{vs:#?}");
-                            for (title, _tupple) in vs {
-                                bids.write()
-                                    .entry(title.clone())
-                                    .and_modify(|tupple| {
-                                        tupple.0 += 1;
-                                        tupple.1 = false;
-                                    })
-                                    .or_insert((1, false));
-                            }
-                        }
-                    },
-                    Container { v: *response, bids }
-                }
-                button { r#type: "submit", form: "t", "tes" }
-            }
-        }
-        None => rsx! {
-            div { "Loading..." }
-        },
-    }
-}
-
 //const OGP_JSON_FILE: &str = manganis::mg!(file("./test.json"));
 
 #[component]
@@ -135,11 +83,7 @@ fn Content() -> Element {
     let bids = use_signal(|| HashMap::from([("".to_string(), (0, false))]));
 
     rsx! {
-        if IS_BUILD_FOR_SSG {
-            ContainerFromJson { bids }
-        } else if !IS_UNDER_CONSTRUCTION {
-            ContainerFromDB { bids }
-        }
+        ContainerFromJson { bids }
     }
 }
 
